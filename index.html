@@ -1,11 +1,198 @@
-<html>
-  <title>samm.cz meshcore experiments</title>
-  <body>
-    <H1>Meshcore Playground</H1>
-    This is a page about my MeshCore related experiments and hardware/software used
-    <h2>Horovice mc.samm.cz#R1 repeater</h2>
-    Running on T-Beam rev 1.2 board
-    <h2>Horovice mc.samm.cz#OBS</h2>
-    Running on RPI4/FreeBSD, with L1 Seeed WIO Tracker L1 board connected using USB. 
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meshcore Playground</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid rgba(100, 255, 218, 0.3);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: #a0aec0;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 10px 40px rgba(100, 255, 218, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            color: #64ffda;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .label {
+            display: inline-block;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .info {
+            margin-top: 1rem;
+            color: #cbd5e0;
+            font-size: 0.95rem;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            color: #a0aec0;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Meshcore Playground</h1>
+            <p class="subtitle">Exploring MeshCore networks through experimental hardware and software implementations</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">📡</div>
+                    <h2>Horovice mc.samm.cz#R1</h2>
+                </div>
+                <div class="label">REPEATER NODE</div>
+                <div class="info">
+                    Running on T-Beam rev 1.2 board
+                </div>
+                <div class="tech-badge">T-Beam Hardware</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">🖥️</div>
+                    <h2>Horovice mc.samm.cz#OBS</h2>
+                </div>
+                <div class="label">OBSERVER NODE</div>
+                <div class="info">
+                    Running on RPI4/FreeBSD, with L1 Seeed WIO Tracker L1 board connected using USB.
+                </div>
+                <div class="tech-badge">Raspberry Pi 4</div>
+                <div class="tech-badge">FreeBSD</div>
+                <div class="tech-badge">Seeed WIO Tracker L1</div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
